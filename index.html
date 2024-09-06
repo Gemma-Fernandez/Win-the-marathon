@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Win the marathon</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <!-- PAGINA DE INICIO-->
+    <div id="init-screen" class="container">
+      <img src="./images/podium.png" width="400" alt="logoInicio" />
+      <h1>WIN THE MARATHON</h1>
+      <div>
+        <h3>Instrucciones</h3>
+        <p>Descripción nstrucciones de juego</p>
+      </div>
+      <button id="start-btn">Start!</button>
+    </div>
+
+    <!-- PANTALLA DE JUEGO-->
+    <div id="game-screen" class="container">
+      <!-- Element del juego como puntuación, vidas, ... deberia ir aqui (dentro del game-screen pero fuera del game-box) --->
+      <div id="game-box">
+        <!-- Los element del juego los añadire de JS con DOM-->
+      </div>
+    </div>
+
+    <!-- PANTALLA FINAL-->
+    <div id="game-over-screen" class="container">
+      <img src="./images/Game Over.png" width="400" alt="logoGameOver" />
+      <button id="end-btn">Try again</button>
+      <img src="./images/hommer.gif" width="300" alt="gifHommer" />
+    </div>
+  </body>
+</html>

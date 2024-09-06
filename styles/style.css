@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    background-color: rgb(20, 106, 20);
+  }
+
+  h1{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    text-shadow:#3d3e3f 8px -20px 9px ;
+
+  }
+
+  #init-screen img{
+    border-radius: 40px;
+
+  }
+
+  #start-btn {
+    background-color: rgb(140, 189, 140);
+    color: black;
+    padding: 20px;
+    font-size: 25px;
+    margin-top: 40px;
+    border-radius: 20px; 
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+  }
+
+  #game-box {
+    background-color: rgb(121, 171, 142);
+    width:600px;
+    height:450px;
+  
+    position: relative; /*permite posicionar los element de forma absoluta dentro de game-box */
+    overflow: hidden; /* no deja que los element salgan visualmente del game-box */
+    user-select: none; /* no deja que los element del game-box sean resaltados al hacer click */
+    
+    background-image: url("../images/carretera.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  #end-btn{
+    background-color: rgb(249, 249, 249);
+    color: black;
+    padding: 20px;
+    font-size: 20px;
+    margin-top: 30px;
+    border-radius: 80px; 
+    margin-bottom: 30px;
+  }
