@@ -38,9 +38,9 @@ body {
     width:600px;
     height:450px;
   
-    position: relative; /*permite posicionar los element de forma absoluta dentro de game-box */
-    overflow: hidden; /* no deja que los element salgan visualmente del game-box */
-    user-select: none; /* no deja que los element del game-box sean resaltados al hacer click */
+    position: relative; /*posiciona los element de forma absoluta dentro de game-box */
+    overflow: hidden; /* los element no salgan visualmente del game-box */
+    user-select: none; /* element del game-box no sean resaltados al hacer click */
     
     background-image: url("../images/carretera.jpg");
     background-position: center;
@@ -55,4 +55,9 @@ body {
     margin-top: 30px;
     border-radius: 80px; 
     margin-bottom: 30px;
+  }
+
+
+  #game-screen, #game-over-screen{
+    display: none; /*borramos de la vista las 2 pantallas */
   }
