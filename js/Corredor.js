@@ -4,6 +4,7 @@ class Corredor{
         this.y= 50,
         this.h= 80,
         this.w= 70,
+        this.speed= 25,
 
         this.node= document.createElement("img");  //añadimos el corredor al DOM
         this.node.src= "./images/corredora.png";
@@ -15,7 +16,6 @@ class Corredor{
         this.node.style.position= "absolute";   //ajustamos el top y left
         this.node.style.top= `${this.y}px`;
         this.node.style.left= `${this.x}px`;
-
-
     }
+
 }
