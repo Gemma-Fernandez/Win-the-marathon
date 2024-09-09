@@ -33,6 +33,15 @@ body {
     margin: 50px;
   }
 
+  h2 {
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: right;
+  }
+
+  
+
   #game-box {
     background-color: rgb(121, 171, 142);
     width:600px;

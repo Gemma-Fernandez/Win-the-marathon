@@ -1,14 +1,21 @@
 class Piedra {
-  constructor() {
+  constructor(positionY, type) {
     this.x = gameBoxNode.offsetWidth;
-    this.y = 50,
-    this.h = 40,
+    this.y = positionY,
+    this.h = 35,
     this.w = 40,
-    this.speed= 5;
+    this.speed= 4;
 
 
     this.node = document.createElement("img");
-    this.node.src = "./images/Piedra.png";
+    if(type === "pequeña"){
+        this.node.src = "./images/Piedra.png";
+    }else if( type === "grande"){
+        this.node.src = "./images/piedra-grande.png";
+    }else if(type === "botella"){
+        this.node.src= "./images/botella_vacia.png";
+    }
+    
     gameBoxNode.append(this.node); //añadimos la piedra a la pantalla del juego
 
     this.node.style.width = `${this.w}px`;

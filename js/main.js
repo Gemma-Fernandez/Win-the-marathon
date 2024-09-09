@@ -8,11 +8,16 @@ const startButtonNode = document.querySelector("#start-btn");
 
 const gameBoxNode = document.querySelector("#game-box");
 
+const numberVidasNode= document.querySelector("#numberVidas");
+
 //VARIABLES GLOBALES DEL JUEGO
 let corredor = null;
 let piedraArray= [];
 const abajoMax= 350;
 const arribaMax= 0;
+
+let gameIntervalId= null;
+let piedraIntervalId= null;
 
 
 //FUNCIONES GLOBALES DEL JUEGO
@@ -22,13 +27,13 @@ function startGame() {
 
   corredor = new Corredor(); //añadimos todos los elementos iniciales al juego
    
-  setInterval(() => {
+  gameIntervalId= setInterval(() => {
     gameLoop();
   }, Math.round(1000 / 60)); //iniciamos el intervalo del juego, 60fps
   
    
 
-  setInterval(()=>{
+  piedraIntervalId= setInterval(()=>{
     addPiedra();
   }, 2000)
   
@@ -41,6 +46,8 @@ function gameLoop() {
     //piedraMovement(eachPiedra);
     eachPiedra.automaticMovement();
   })
+  checkedPiedraSalio();
+  colisionesPiedras();
   
 }
 function corredorMovement(direction) {
@@ -68,14 +75,59 @@ function esElLimiteCorredor(position, direction){
 }
 
 function addPiedra(){
-  if(piedraArray.length <= 10){
-    let newPiedra= new Piedra();
+  let randomPositionY= Math.floor(Math.random()*180)
+
+   let newPiedra= new Piedra(randomPositionY, "pequeña");
   piedraArray.push(newPiedra);
   console.log("piedra añadida")
-  }
+  
+  setTimeout(() => {   //piedraGrande saldrá un poco despues en la pantalla
+    let piedraMasGrande= new Piedra(randomPositionY + 250, "grande");
+  piedraArray.push(piedraMasGrande);
+  }, 3000);
+
+  setTimeout(()=>{
+    let botellaObjeto= new Piedra (randomPositionY + 100, "botella");
+  piedraArray.push(botellaObjeto)
+  }, 7550); 
   
 }
 
+function checkedPiedraSalio(){
+  if(piedraArray.length === 0){
+    return //si el array esta vacio, nos se ejecuta
+  }
+  if((piedraArray[0].x + piedraArray[0].w) <=0){   //se eliminan las piedras cuando salen de la pantalla
+    piedraArray[0].node.remove() //sacamos del DOM
+    piedraArray.shift();
+   
+  }
+}
+
+function colisionesPiedras(){
+  piedraArray.forEach((eachPiedra)=>{
+    if (
+      corredor.x < eachPiedra.x + eachPiedra.w &&
+      corredor.x + corredor.w > eachPiedra.x &&
+      corredor.y < eachPiedra.y + eachPiedra.h &&
+      corredor.y + corredor.h > eachPiedra.y
+    ) { 
+      gameOver();
+      
+    }
+  });
+}
+
+function gameOver(){
+    clearInterval (gameIntervalId);
+    clearInterval (piedraIntervalId);
+
+    gameBoxNode.innerHTML= "";
+
+
+    gameScreenNode.style.display="none"
+    gameOverScreenNode.style.display= "flex";
+}
 
 
 //EVENT LISTENERS
