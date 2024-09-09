@@ -195,7 +195,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-endButtonNode.addEventListener("click", ());
+
 
 
 
