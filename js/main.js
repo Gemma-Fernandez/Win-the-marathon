@@ -5,6 +5,7 @@ const gameScreenNode = document.querySelector("#game-screen");
 const gameOverScreenNode = document.querySelector("#game-over-screen");
 
 const startButtonNode = document.querySelector("#start-btn");
+const endButtonNode= document.querySelector("#end-btn");
 
 const gameBoxNode = document.querySelector("#game-box");
 
@@ -16,6 +17,7 @@ let piedraArray= [];
 const abajoMax= 350;
 const arribaMax= 0;
 let botellaArray=[];
+let numberVidas= 1;
 
 
 let gameIntervalId= null;
@@ -39,7 +41,7 @@ function startGame() {
 
   setInterval(()=>{
     addBotella();
-  }, 20000)
+  }, 1000)
 
    
   
@@ -142,8 +144,11 @@ function colisionesPiedras(){
       corredor.y < eachPiedra.y + eachPiedra.h &&
       corredor.y + corredor.h > eachPiedra.y
     ) { 
-      gameOver();
-      
+      numberVidas--;
+      numberVidasNode.innerText=numberVidas;
+      if(numberVidas ===0){
+        gameOver();
+      } 
     }
   });
 }
@@ -157,11 +162,12 @@ function colisionesBotellas(){
       ){
         eachBotella.node.remove();
         botellaArray.splice(index, 1)   //eliminamos la botella con la que colisiona
-      }
-  })
-  
 
-  
+        numberVidas++;
+        numberVidasNode.innerText= numberVidas;
+      }
+  });
+    
 }
 
 function gameOver(){
@@ -180,6 +186,7 @@ function gameOver(){
 //EVENT LISTENERS
 startButtonNode.addEventListener("click", startGame); //cuando hacemos click en el boton, inicia el juego
 
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowDown") {
     corredorMovement(event.key);
@@ -187,6 +194,8 @@ window.addEventListener("keydown", (event) => {
     corredorMovement(event.key);
   }
 });
+
+endButtonNode.addEventListener("click", ());
 
 
 
