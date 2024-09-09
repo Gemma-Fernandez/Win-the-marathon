@@ -41,10 +41,7 @@ function startGame() {
 
   setInterval(()=>{
     addBotella();
-  }, 1000)
-
-   
-  
+  }, 20000)
   
 }
 
@@ -137,14 +134,18 @@ function checkedBotellaExit(){
 }
 
 function colisionesPiedras(){
-  piedraArray.forEach((eachPiedra)=>{
+  piedraArray.forEach((eachPiedra, index)=>{
     if (
       corredor.x < eachPiedra.x + eachPiedra.w &&
       corredor.x + corredor.w > eachPiedra.x &&
       corredor.y < eachPiedra.y + eachPiedra.h &&
       corredor.y + corredor.h > eachPiedra.y
     ) { 
+      eachPiedra.node.remove();
+      piedraArray.splice(index, 1);
+      console.log("colision con piedra ", numberVidas)
       numberVidas--;
+      console.log(`una vida menos ${numberVidas}`)
       numberVidasNode.innerText=numberVidas;
       if(numberVidas ===0){
         gameOver();
