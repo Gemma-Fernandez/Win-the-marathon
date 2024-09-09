@@ -15,6 +15,8 @@ let corredor = null;
 let piedraArray= [];
 const abajoMax= 350;
 const arribaMax= 0;
+let botellaArray=[];
+
 
 let gameIntervalId= null;
 let piedraIntervalId= null;
@@ -31,11 +33,15 @@ function startGame() {
     gameLoop();
   }, Math.round(1000 / 60)); //iniciamos el intervalo del juego, 60fps
   
-   
-
-  piedraIntervalId= setInterval(()=>{
+   piedraIntervalId= setInterval(()=>{
     addPiedra();
   }, 2000)
+
+  setInterval(()=>{
+    addBotella();
+  }, 20000)
+
+   
   
   
 }
@@ -45,9 +51,16 @@ function gameLoop() {
   piedraArray.forEach((eachPiedra)=>{
     //piedraMovement(eachPiedra);
     eachPiedra.automaticMovement();
+    
+  })
+  botellaArray.forEach((eachBotella)=>{
+    eachBotella.automaticMovementBot();
   })
   checkedPiedraSalio();
   colisionesPiedras();
+  checkedBotellaExit();
+  colisionesBotellas();
+  
   
 }
 function corredorMovement(direction) {
@@ -89,9 +102,17 @@ function addPiedra(){
   setTimeout(()=>{
     let botellaObjeto= new Piedra (randomPositionY + 100, "botella");
   piedraArray.push(botellaObjeto)
-  }, 7550); 
+  }, 9550); 
   
 }
+
+function addBotella(){
+  let randomPositionBotella= Math.floor(Math.random()* 350)
+  let newBotella= new Botella(randomPositionBotella);
+  botellaArray.push(newBotella);
+  
+}
+
 
 function checkedPiedraSalio(){
   if(piedraArray.length === 0){
@@ -101,6 +122,15 @@ function checkedPiedraSalio(){
     piedraArray[0].node.remove() //sacamos del DOM
     piedraArray.shift();
    
+  }
+}
+function checkedBotellaExit(){
+  if(botellaArray.length === 0){
+    return
+  }
+  if((botellaArray[0].x + botellaArray[0].w)<=0){
+    botellaArray[0].node.remove()
+    botellaArray.shift();
   }
 }
 
@@ -117,6 +147,22 @@ function colisionesPiedras(){
     }
   });
 }
+function colisionesBotellas(){
+  botellaArray.forEach((eachBotella, index)=>{
+      if(
+        corredor.x < eachBotella.x + eachBotella.w &&
+      corredor.x + corredor.w > eachBotella.x &&
+      corredor.y < eachBotella.y + eachBotella.h &&
+      corredor.y + corredor.h > eachBotella.y
+      ){
+        eachBotella.node.remove();
+        botellaArray.splice(index, 1)   //eliminamos la botella con la que colisiona
+      }
+  })
+  
+
+  
+}
 
 function gameOver(){
     clearInterval (gameIntervalId);
@@ -128,6 +174,7 @@ function gameOver(){
     gameScreenNode.style.display="none"
     gameOverScreenNode.style.display= "flex";
 }
+
 
 
 //EVENT LISTENERS
