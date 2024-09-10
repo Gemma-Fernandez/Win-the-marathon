@@ -1,7 +1,7 @@
 class Corredor{
     constructor(){
         this.x= 50,
-        this.y= 50,
+        this.y= 200,
         this.h= 80,
         this.w= 70,
         this.speed= 25,

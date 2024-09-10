@@ -182,6 +182,19 @@ function gameOver(){
     gameOverScreenNode.style.display= "flex";
 }
 
+function resetGame(){
+  numberVidas=1;
+  numberVidasNode.innerText= numberVidas;
+  
+  piedraArray=[]
+  botellaArray=[]
+
+  gameBoxNode.innerHTML= ""
+
+  corredor= null;
+
+}
+
 
 
 //EVENT LISTENERS
@@ -196,6 +209,12 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+endButtonNode.addEventListener("click", ()=>{
+  gameOverScreenNode.style.display= "none";
+  initScreenNode.style.display= "flex";
+
+  resetGame();
+} );
 
 
 
