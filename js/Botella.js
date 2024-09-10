@@ -1,13 +1,20 @@
 class Botella{
-    constructor(positiony){
+    constructor(positiony, type, vidas){
         this.x= gameBoxNode.offsetWidth;
         this.y= positiony,
         this.h= 40,
         this.w= 20,
-        this.speed= 4,
+        this.speed= speedGlobal,
+        this.vidas= vidas
 
         this.node= document.createElement("img");  //añadimos la botella al DOM
-        this.node.src= "./images/bebida-energetica.png";
+        if(type === "unaVida"){
+            this.node.src= "./images/bebida-energetica.png";
+        }else if( type === "dosVidas"){
+            this.node.src= "./images/platano.png";
+        }
+
+               
         gameBoxNode.append(this.node);  //añadimos la botella a la pantalla del juego
 
 
@@ -19,7 +26,7 @@ class Botella{
     }
 
     automaticMovementBot(){
-        this.x -= this.speed;
+        this.x -= speedGlobal;
         this.node.style.left = `${this.x}px`;
       }
 }

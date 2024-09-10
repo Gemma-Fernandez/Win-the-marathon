@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Win the marathon</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="shortcut icon" href="#">
   </head>
   <body>
     <!-- PAGINA DE INICIO-->
     <div id="init-screen" class="container">
-      <img src="./images/podium.png" width="400" alt="logoInicio" />
+      <img id="podium" src="./images/podium.png" width="400" alt="logoInicio" />
       <h1>WIN THE MARATHON</h1>
       <div id="instructions">
         <h3>Instrucciones</h3>
-        <p>Descripción nstrucciones de juego</p>
+        <p id="muchasImg">Debes mover al corredor arriba y abajo con las teclas <span><img src="./images/teclas.png" width="30"/></span>
+         <br> <br>
+          para evitar chocar con los obstaculos y que te quiten vidas.
+        <br>
+        Si recoges las bebidas energeticas <span><img src="./images/bebida-energetica.png" width="20"/></span>
+        te sumarán una vida.
+
+      </p>
       </div>
       <button id="start-btn">Start!</button>
     </div>

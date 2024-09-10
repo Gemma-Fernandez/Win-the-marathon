@@ -3,8 +3,8 @@ class Piedra {
     this.x = gameBoxNode.offsetWidth;
     this.y = positionY,
     this.h = 35,
-    this.w = 45,
-    this.speed= 3;
+    this.w = 47,
+    this.speed= speedGlobal;
 
 
     this.node = document.createElement("img");
@@ -27,7 +27,7 @@ class Piedra {
    
   }
   automaticMovement(){
-    this.x -= this.speed;
+    this.x -= speedGlobal;
     this.node.style.left = `${this.x}px`;
   }
   

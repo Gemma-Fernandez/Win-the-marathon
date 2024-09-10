@@ -11,7 +11,7 @@ body {
 
   }
 
-  #init-screen img{
+  #podium {
     border-radius: 40px;
 
   }
@@ -23,6 +23,10 @@ body {
     font-size: 25px;
     margin-top: 40px;
     border-radius: 20px; 
+  }
+  #start-btn:hover{
+    background-color: rgb(72, 224, 72);
+    border: 4px solid 
   }
 
   .container {
@@ -47,7 +51,6 @@ body {
   }
 
   #botonAudio{
-    color: black;
     padding: 5px;
     font-size: 15px;
     display: block;
@@ -56,10 +59,20 @@ body {
   
 
   #audioOn, #audioOff{
-    background-color: rgb(176, 199, 176);
-    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    padding: 7px;
     margin-bottom: 10px;
+    border: 4px solid rgb(36, 73, 51);
     border-radius: 10px;
+    color: rgb(36, 73, 51);
+    font-weight: bolder;
+  }
+
+  #audioOff:hover{
+    background-color: rgb(85, 193, 101);
+  }
+  #audioOn:hover {
+    background-color: rgb(85, 193, 101);
   }
  
 
@@ -87,7 +100,17 @@ body {
     margin-bottom: 30px;
   }
 
+  #end-btn:hover{
+    background-color: rgb(72, 224, 72);
+    border: 4px solid 
+  }
+
 
   #game-screen, #game-over-screen{
     display: none; /*borramos de la vista las 2 pantallas */
+  }
+
+  #muchasImg{
+    border-radius: 0;
+    
   }

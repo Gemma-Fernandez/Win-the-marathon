@@ -14,9 +14,9 @@ const gameBoxNode = document.querySelector("#game-box");
 const numberVidasNode= document.querySelector("#numberVidas");
 
 
-let winAudio= new Audio ("./audios/ganas-vida.wav");
-let loseAudio= new Audio ("./audios/pierdes-vida.wav");
-let soundMain= new Audio ("./audios/marathon-audio.wav")
+let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas vidas
+let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //para para cuando pierdes vidas
+let soundMain= new Audio ("./audios/marathon-audio.wav")  //audio de fondo
 
 //VARIABLES GLOBALES DEL JUEGO
 let corredor = null;
@@ -24,7 +24,8 @@ let piedraArray= [];
 const abajoMax= 350;
 const arribaMax= 0;
 let botellaArray=[];
-let numberVidas= 1;
+let numberVidas= 1; //contador de vidas
+let speedGlobal= 3;   //velocidad principal de todos los objetos
 
 
 let gameIntervalId= null;
@@ -49,6 +50,10 @@ function startGame() {
   setInterval(()=>{
     addBotella();
   }, 20000)
+
+  setInterval(()=>{
+    speedGlobal += 0.5;
+  }, 6000);
   
 }
 
@@ -66,6 +71,8 @@ function gameLoop() {
   colisionesPiedras();
   checkedBotellaExit();
   colisionesBotellas();
+
+  
   
   
 }
@@ -113,9 +120,14 @@ function addPiedra(){
 }
 
 function addBotella(){
-  let randomPositionBotella= Math.floor(Math.random()* 350)
-  let newBotella= new Botella(randomPositionBotella);
+  let randomPositionBotella= Math.floor(Math.random()* 180)
+  let newBotella= new Botella(randomPositionBotella, "unaVida", 1);
   botellaArray.push(newBotella);
+
+  setTimeout(() => {   //botella que te da 2 vidas saldrá un poco despues en la pantalla
+    let botellaMasVidas= new Botella (randomPositionBotella + 100, "dosVidas", 2);
+    botellaArray.push(botellaMasVidas);
+  }, 10000);
   
 }
 
@@ -172,7 +184,7 @@ function colisionesBotellas(){
         eachBotella.node.remove();
         botellaArray.splice(index, 1)   //eliminamos la botella con la que colisiona
 
-        numberVidas++;
+        numberVidas+= eachBotella.vidas;
         numberVidasNode.innerText= numberVidas;
 
         winAudio.play();
@@ -227,11 +239,11 @@ endButtonNode.addEventListener("click", ()=>{
   resetGame();
 } );
 
-onButtonNode.addEventListener("click", ()=>{
+onButtonNode.addEventListener("click", ()=>{     //cuando pulso boton On el audio se activa
   soundMain.play();
 });
 
-offButtonNode.addEventListener("click", ()=>{
+offButtonNode.addEventListener("click", ()=>{   //cuando pulso boton Off el audio se pausa
   soundMain.pause();
 })
 
