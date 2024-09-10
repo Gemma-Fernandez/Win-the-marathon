@@ -9,7 +9,7 @@ class Piedra {
 
     this.node = document.createElement("img");
     if(type === "pequeña"){
-        this.node.src = "./images/Piedra.png";
+        this.node.src = "./images/piedra-peque.png";
     }else if( type === "grande"){
         this.node.src = "./images/piedra-grande.png";
     }else if(type === "botella"){

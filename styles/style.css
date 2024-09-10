@@ -45,6 +45,22 @@ body {
     font-size: 20px;
 
   }
+
+  #botonAudio{
+    color: black;
+    padding: 5px;
+    font-size: 15px;
+    display: block;
+    width: 30%
+  }
+  
+
+  #audioOn, #audioOff{
+    background-color: rgb(176, 199, 176);
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
  
 
   #game-box {

@@ -6,10 +6,17 @@ const gameOverScreenNode = document.querySelector("#game-over-screen");
 
 const startButtonNode = document.querySelector("#start-btn");
 const endButtonNode= document.querySelector("#end-btn");
+const onButtonNode= document.querySelector("#audioOn");
+const offButtonNode= document.querySelector("#audioOff");
 
 const gameBoxNode = document.querySelector("#game-box");
 
 const numberVidasNode= document.querySelector("#numberVidas");
+
+
+let winAudio= new Audio ("./audios/ganas-vida.wav");
+let loseAudio= new Audio ("./audios/pierdes-vida.wav");
+let soundMain= new Audio ("./audios/marathon-audio.wav")
 
 //VARIABLES GLOBALES DEL JUEGO
 let corredor = null;
@@ -143,10 +150,11 @@ function colisionesPiedras(){
     ) { 
       eachPiedra.node.remove();
       piedraArray.splice(index, 1);
-      console.log("colision con piedra ", numberVidas)
+    
       numberVidas--;
-      console.log(`una vida menos ${numberVidas}`)
       numberVidasNode.innerText=numberVidas;
+      loseAudio.play();
+
       if(numberVidas ===0){
         gameOver();
       } 
@@ -166,6 +174,9 @@ function colisionesBotellas(){
 
         numberVidas++;
         numberVidasNode.innerText= numberVidas;
+
+        winAudio.play();
+        
       }
   });
     
@@ -215,6 +226,14 @@ endButtonNode.addEventListener("click", ()=>{
 
   resetGame();
 } );
+
+onButtonNode.addEventListener("click", ()=>{
+  soundMain.play();
+});
+
+offButtonNode.addEventListener("click", ()=>{
+  soundMain.pause();
+})
 
 
 
