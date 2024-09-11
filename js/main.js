@@ -59,7 +59,7 @@ function startGame() {
 
   setInterval(()=>{
     addCarretera();
-  }, 700)
+  }, 600)
   
 }
 
