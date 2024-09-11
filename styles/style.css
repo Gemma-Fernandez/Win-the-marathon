@@ -80,15 +80,24 @@ body {
     background-color: rgb(121, 171, 142);
     width:600px;
     height:450px;
-  
+
     position: relative; /*posiciona los element de forma absoluta dentro de game-box */
     overflow: hidden; /* los element no salgan visualmente del game-box */
     user-select: none; /* element del game-box no sean resaltados al hacer click */
-    
+  }
+  
+  .road{
+    position: absolute;
+    top: 
+    width: 100%;
+    height: 100%;
     background-image: url("../images/carretera.jpg");
-    background-position: center;
     background-size: cover;
   }
+    
+    
+   
+  
 
   #end-btn{
     background-color: rgb(249, 249, 249);

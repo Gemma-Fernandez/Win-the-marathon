@@ -24,7 +24,7 @@ let piedraArray= [];
 const abajoMax= 350;
 const arribaMax= 0;
 let botellaArray=[];
-let numberVidas= 1; //contador de vidas
+let numberVidas= 2; //contador de vidas
 let speedGlobal= 3;   //velocidad principal de todos los objetos
 
 
@@ -52,7 +52,7 @@ function startGame() {
   }, 20000)
 
   setInterval(()=>{
-    speedGlobal += 0.5;
+    speedGlobal += 0.7;
   }, 6000);
   
 }
@@ -103,20 +103,24 @@ function esElLimiteCorredor(position, direction){
 function addPiedra(){
   let randomPositionY= Math.floor(Math.random()*180)
 
-   let newPiedra= new Piedra(randomPositionY, "pequeña");
+   let newPiedra= new Piedra(randomPositionY, "pequeña", 1);
   piedraArray.push(newPiedra);
   console.log("piedra añadida")
   
   setTimeout(() => {   //piedraGrande saldrá un poco despues en la pantalla
-    let piedraMasGrande= new Piedra(randomPositionY + 250, "grande");
+    let piedraMasGrande= new Piedra(randomPositionY + 250, "grande", 1);
   piedraArray.push(piedraMasGrande);
   }, 3000);
 
   setTimeout(()=>{
-    let botellaObjeto= new Piedra (randomPositionY + 100, "botella");
-  piedraArray.push(botellaObjeto)
+    let donutRosa= new Piedra (randomPositionY + 100, "donut", 1);
+  piedraArray.push(donutRosa)
   }, 9550); 
-  
+
+  setTimeout(()=>{
+    let perroEnojado= new Piedra (randomPositionY + 150, "perro", 2);
+  piedraArray.push(perroEnojado)
+  }, 25000);
 }
 
 function addBotella(){
@@ -161,9 +165,9 @@ function colisionesPiedras(){
       corredor.y + corredor.h > eachPiedra.y
     ) { 
       eachPiedra.node.remove();
-      piedraArray.splice(index, 1);
+      piedraArray.splice(index, 1);  //eliminamos el objeto con el colisiona
     
-      numberVidas--;
+      numberVidas-= eachPiedra.vidas;
       numberVidasNode.innerText=numberVidas;
       loseAudio.play();
 
