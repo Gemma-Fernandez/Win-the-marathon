@@ -2,7 +2,7 @@ class Carretera{
     constructor(){
         this.x= gameBoxNode.offsetWidth;
         this.y= 217,
-        this.h= 12,
+        this.h= 10,
         this.w= 95,
         this.speed= 4,
 

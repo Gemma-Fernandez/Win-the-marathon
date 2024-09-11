@@ -1,13 +1,14 @@
-class Corredor{
-    constructor(){
-        this.x= 50,
-        this.y= 200,
-        this.h= 80,
-        this.w= 70,
-        this.speed= 25,
+class Donut{
+    constructor(positionY) {
+        this.x = gameBoxNode.offsetWidth;
+        this.y = positionY,
+        this.h = 40,
+        this.w = 55,
+        this.speed= speedGlobal;
+        /*this.vidas= vidas;*/
 
         this.node= document.createElement("img");  //añadimos el corredor al DOM
-        this.node.src= "./images/corredora.png";
+        this.node.src= "./images/donut.png";
         gameBoxNode.append(this.node);  //añadimos la corredora a la pantalla del juego
 
 
@@ -17,16 +18,10 @@ class Corredor{
         this.node.style.top= `${this.y}px`;
         this.node.style.left= `${this.x}px`;
 
-        this.node.style.zIndex="3";
-
+        this.node.style.zIndex="2";
     }
-
-    slowDown(){
-        const speedOriginal= this.speed;
-        this.speed= 4;
-        setTimeout(()=>{
-            this.speed=speedOriginal;
-        }, 1500);
-    }
-
+    automaticMovementD(){
+        this.x -= speedGlobal;
+        this.node.style.left = `${this.x}px`;
+      }
 }

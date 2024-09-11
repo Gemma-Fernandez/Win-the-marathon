@@ -28,6 +28,7 @@ let botellaArray=[];
 let numberVidas= 2; //contador de vidas
 let speedGlobal= 3;   //velocidad principal de todos los objetos
 let carreteraArray= [];
+let donutArray= [];
 
 
 let gameIntervalId= null;
@@ -40,6 +41,7 @@ function startGame() {
   gameScreenNode.style.display = "flex";
 
   corredor = new Corredor(); //añadimos todos los elementos iniciales al juego
+  
      
   gameIntervalId= setInterval(() => {
     gameLoop();
@@ -47,11 +49,15 @@ function startGame() {
   
    piedraIntervalId= setInterval(()=>{
     addPiedra();
-  }, 2000)
+  }, 1500)
+
+  setInterval(()=>{
+    addDonut();
+  }, 3075)
 
   setInterval(()=>{
     addBotella();
-  }, 20000)
+  }, 10575)
 
   setInterval(()=>{
     speedGlobal += 0.7;
@@ -60,6 +66,7 @@ function startGame() {
   setInterval(()=>{
     addCarretera();
   }, 600)
+
   
 }
 
@@ -75,11 +82,17 @@ function gameLoop() {
   botellaArray.forEach((eachBotella)=>{
     eachBotella.automaticMovementBot();
   })
-  checkedPiedraSalio();
+  donutArray.forEach((eachDonut)=>{
+    eachDonut.automaticMovementD();
+  })
+
+  checkedElementExit(piedraArray);
   colisionesPiedras();
-  checkedBotellaExit();
+  checkedElementExit(botellaArray);
   colisionesBotellas(); 
-}
+  checkedElementExit(carreteraArray);
+  colisionesDonut();
+  }
 function corredorMovement(direction) {
   // console.log('Test Gemma2' +JSON.stringify(corredor));
   if (direction === "ArrowDown") {
@@ -105,7 +118,7 @@ function esElLimiteCorredor(position, direction){
 }
 
 function addPiedra(){
-  let randomPositionY= Math.floor(Math.random()*180)
+  let randomPositionY= Math.floor(Math.random()*190)
 
    let newPiedra= new Piedra(randomPositionY, "pequeña", 1);
   piedraArray.push(newPiedra);
@@ -115,11 +128,6 @@ function addPiedra(){
     let piedraMasGrande= new Piedra(randomPositionY + 250, "grande", 1);
   piedraArray.push(piedraMasGrande);
   }, 3000);
-
-  setTimeout(()=>{
-    let donutRosa= new Piedra (randomPositionY + 100, "donut", 1);
-  piedraArray.push(donutRosa)
-  }, 9550); 
 
   setTimeout(()=>{
     let perroEnojado= new Piedra (randomPositionY + 150, "perro", 2);
@@ -144,23 +152,21 @@ function addCarretera(){
   carreteraArray.push(newCarretera);
 }
 
-function checkedPiedraSalio(){
-  if(piedraArray.length === 0){
+function addDonut(){
+  let randomPositionD= Math.floor(Math.random()*180)
+
+  let newDonut= new Donut(randomPositionD+150);
+  donutArray.push(newDonut);
+}
+
+function checkedElementExit(arr){
+  if(arr.length === 0){
     return //si el array esta vacio, nos se ejecuta
   }
-  if((piedraArray[0].x + piedraArray[0].w) <=0){   //se eliminan las piedras cuando salen de la pantalla
-    piedraArray[0].node.remove() //sacamos del DOM
-    piedraArray.shift();
+  if((arr[0].x + arr[0].w) <=0){   //se eliminan las piedras cuando salen de la pantalla
+    arr[0].node.remove() //sacamos del DOM
+    arr.shift();
    
-  }
-}
-function checkedBotellaExit(){
-  if(botellaArray.length === 0){
-    return
-  }
-  if((botellaArray[0].x + botellaArray[0].w)<=0){
-    botellaArray[0].node.remove()
-    botellaArray.shift();
   }
 }
 
@@ -179,7 +185,7 @@ function colisionesPiedras(){
       numberVidasNode.innerText=numberVidas;
       loseAudio.play();
 
-      if(numberVidas ===0){
+      if(numberVidas === 0){
         gameOver();
       } 
     }
@@ -204,6 +210,22 @@ function colisionesBotellas(){
       }
   });
     
+}
+
+function colisionesDonut(){
+  donutArray.forEach((eachDonut, index)=>{
+    if (
+      corredor.x < eachDonut.x + eachDonut.w &&
+      corredor.x + corredor.w > eachDonut.x &&
+      corredor.y < eachDonut.y + eachDonut.h &&
+      corredor.y + corredor.h > eachDonut.y
+    ) { 
+      eachDonut.node.remove();
+      donutArray.splice(index, 1); 
+
+      corredor.slowDown();
+    }
+  })  
 }
 
 function gameOver(){

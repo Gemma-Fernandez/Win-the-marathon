@@ -12,9 +12,7 @@ class Piedra {
     if(type === "pequeña"){
         this.node.src = "./images/piedra-peque.png";
     }else if( type === "grande"){
-        this.node.src = "./images/piedra-grande.png";
-    }else if(type === "donut"){
-        this.node.src= "./images/donut.png";
+        this.node.src = "./images/piedra-grande.png";      
     }else if(type === "perro"){
       this.node.src= "./images/perro-enojado.png";
     }
