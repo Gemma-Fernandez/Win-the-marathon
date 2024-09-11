@@ -27,6 +27,7 @@ class Piedra {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
+    this.node.style.zIndex="2";
    
   }
   automaticMovement(){

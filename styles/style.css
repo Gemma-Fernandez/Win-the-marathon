@@ -83,15 +83,11 @@ body {
 
     position: relative; /*posiciona los element de forma absoluta dentro de game-box */
     overflow: hidden; /* los element no salgan visualmente del game-box */
-    user-select: none; /* element del game-box no sean resaltados al hacer click */
-  }
+    user-select: none;  /*element del game-box no sean resaltados al hacer click */
+    
   
-  .road{
-    position: absolute;
-    top: 
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/carretera.jpg");
+    background-image: url("../images/carretera.png");
+    background-position: center;
     background-size: cover;
   }
     

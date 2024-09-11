@@ -16,6 +16,9 @@ class Corredor{
         this.node.style.position= "absolute";   //ajustamos el top y left
         this.node.style.top= `${this.y}px`;
         this.node.style.left= `${this.x}px`;
+
+        this.node.style.zIndex="3";
+
     }
 
 }

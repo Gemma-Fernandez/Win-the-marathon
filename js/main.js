@@ -18,6 +18,7 @@ let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas 
 let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //para para cuando pierdes vidas
 let soundMain= new Audio ("./audios/marathon-audio.wav")  //audio de fondo
 
+
 //VARIABLES GLOBALES DEL JUEGO
 let corredor = null;
 let piedraArray= [];
@@ -26,6 +27,7 @@ const arribaMax= 0;
 let botellaArray=[];
 let numberVidas= 2; //contador de vidas
 let speedGlobal= 3;   //velocidad principal de todos los objetos
+let carreteraArray= [];
 
 
 let gameIntervalId= null;
@@ -38,7 +40,7 @@ function startGame() {
   gameScreenNode.style.display = "flex";
 
   corredor = new Corredor(); //añadimos todos los elementos iniciales al juego
-   
+     
   gameIntervalId= setInterval(() => {
     gameLoop();
   }, Math.round(1000 / 60)); //iniciamos el intervalo del juego, 60fps
@@ -54,15 +56,21 @@ function startGame() {
   setInterval(()=>{
     speedGlobal += 0.7;
   }, 6000);
+
+  setInterval(()=>{
+    addCarretera();
+  }, 700)
   
 }
 
 function gameLoop() {
   //funcion donde se ejecuta 60 veces por seg el intervalo principal
+  carreteraArray.forEach((eachCarretera)=>{
+    eachCarretera.automaticMovementCarr();
+  })
   piedraArray.forEach((eachPiedra)=>{
     //piedraMovement(eachPiedra);
     eachPiedra.automaticMovement();
-    
   })
   botellaArray.forEach((eachBotella)=>{
     eachBotella.automaticMovementBot();
@@ -70,11 +78,7 @@ function gameLoop() {
   checkedPiedraSalio();
   colisionesPiedras();
   checkedBotellaExit();
-  colisionesBotellas();
-
-  
-  
-  
+  colisionesBotellas(); 
 }
 function corredorMovement(direction) {
   // console.log('Test Gemma2' +JSON.stringify(corredor));
@@ -135,6 +139,10 @@ function addBotella(){
   
 }
 
+function addCarretera(){
+  let newCarretera= new Carretera ();
+  carreteraArray.push(newCarretera);
+}
 
 function checkedPiedraSalio(){
   if(piedraArray.length === 0){
@@ -221,7 +229,6 @@ function resetGame(){
   corredor= null;
 
 }
-
 
 
 //EVENT LISTENERS
