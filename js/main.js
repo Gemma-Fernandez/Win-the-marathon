@@ -55,7 +55,7 @@ function startGame() {
   
    piedraIntervalId= setInterval(()=>{
     addPiedra();
-  }, 1200)
+  }, 1500)
 
   setInterval(()=>{
     addDonut();
@@ -137,7 +137,7 @@ function addPiedra(){
   }, 3000);
 
   setTimeout(()=>{
-    let perroEnojado= new Piedra (randomPositionY + 150, "perro", 2);
+    let perroEnojado= new Piedra (randomPositionY + 180, "perro", 2);
   piedraArray.push(perroEnojado)
   }, 25000);
 }
@@ -182,7 +182,7 @@ function addInitialCarretera(){
 }
 
 function addDonut(){
-  let randomPositionD= Math.floor(Math.random()*180)
+  let randomPositionD= Math.floor(Math.random()*185)
 
   let newDonut= new Donut(randomPositionD+150);
   donutArray.push(newDonut);
