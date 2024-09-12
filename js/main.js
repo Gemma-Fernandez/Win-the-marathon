@@ -63,7 +63,7 @@ function startGame() {
 
   botellaIntervalId= setInterval(()=>{
     addBotella();
-  }, 10575)
+  }, 9575)
 
   setInterval(()=>{
     speedGlobal += 0.7;
@@ -137,7 +137,7 @@ function addPiedra(){
   }, 3000);
 
   setTimeout(()=>{
-    let perroEnojado= new Piedra (randomPositionY + 180, "perro", 2);
+    let perroEnojado= new Piedra (randomPositionY + 70, "perro", 2);
   piedraArray.push(perroEnojado)
   }, 25000);
 }
@@ -148,9 +148,9 @@ function addBotella(){
   botellaArray.push(newBotella);
 
   setTimeout(() => {   //botella que te da 2 vidas saldrá un poco despues en la pantalla
-    let botellaMasVidas= new Botella (randomPositionBotella + 100, "dosVidas", 2);
+    let botellaMasVidas= new Botella (randomPositionBotella + 120, "dosVidas", 2);
     botellaArray.push(botellaMasVidas);
-  }, 10000);
+  }, 10100);
   
 }
 
