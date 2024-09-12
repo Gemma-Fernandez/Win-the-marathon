@@ -12,6 +12,7 @@ const offButtonNode= document.querySelector("#audioOff");
 const gameBoxNode = document.querySelector("#game-box");
 
 const numberVidasNode= document.querySelector("#numberVidas");
+const pointScoreNode= document.querySelector("#pointScore");
 
 
 let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas vidas
@@ -26,6 +27,7 @@ const abajoMax= 350;
 const arribaMax= 0;
 let botellaArray=[];
 let numberVidas= 2; //contador de vidas
+let score= 0;    //la puntuación empieza en 0
 let speedGlobal= 3;   //velocidad principal de todos los objetos
 let carreteraArray= [];
 let donutArray= [];
@@ -33,6 +35,8 @@ let donutArray= [];
 
 let gameIntervalId= null;
 let piedraIntervalId= null;
+let botellaIntervalId= null;
+let carreteraIntervalId= null;
 
 
 //FUNCIONES GLOBALES DEL JUEGO
@@ -42,6 +46,7 @@ function startGame() {
 
   corredor = new Corredor(); //añado elementos iniciales al juego
   addInitialCarretera();
+  scoreCounter();
   
      
   gameIntervalId= setInterval(() => {
@@ -56,7 +61,7 @@ function startGame() {
     addDonut();
   }, 3075)
 
-  setInterval(()=>{
+  botellaIntervalId= setInterval(()=>{
     addBotella();
   }, 10575)
 
@@ -64,7 +69,7 @@ function startGame() {
     speedGlobal += 0.7;
   }, 6000);
 
-  setInterval(()=>{
+  carreteraIntervalId= setInterval(()=>{
     addCarretera();
   }, 600)
 
@@ -253,9 +258,19 @@ function colisionesDonut(){
   })  
 }
 
+function scoreCounter(){
+  scoreIntervalId= setInterval(()=>{
+    score += 10;
+    pointScoreNode.innerText= score;
+  }, 2000)
+}
+
 function gameOver(){
     clearInterval (gameIntervalId);
     clearInterval (piedraIntervalId);
+    clearInterval (botellaIntervalId);
+    clearInterval (carreteraIntervalId);
+    clearInterval (scoreIntervalId);
 
     gameBoxNode.innerHTML= "";
 

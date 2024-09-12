@@ -30,7 +30,7 @@
 
     <!-- PANTALLA DE JUEGO-->
     <div id="game-screen" class="container">
-      <h2> VIDAS <span id="numberVidas"> 2 </span> 
+      <h2 id="textVidas"> VIDAS <span id="numberVidas"> 2 </span> 
         <img src="./images/corazon-vida-removebg-preview.png" width="30" alt="logoCorazon"/>
       </h2>
       <div id="botonAudio">
@@ -46,8 +46,13 @@
 
     <!-- PANTALLA FINAL-->
     <div id="game-over-screen" class="container">
-      <img src="./images/Game Over.png" width="600" alt="logoGameOver" />
-      <button id="end-btn">Try again</button>
+      <img src="./images/Game Over.png" width="500" alt="logoGameOver" />
+      <div id="score"> <h2> Your score </h2>
+        <p><span id="pointScore">0</span> points
+        </p>
+        <button id="end-btn">Try again</button>
+      </div>
+      
       <img src="./images/hommer.gif" width="300" alt="gifHommer" />
     </div>
 
