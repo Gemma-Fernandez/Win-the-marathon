@@ -3,10 +3,13 @@ body {
     background-color: rgb(20, 106, 20);
   }
 
-  #game-screen{background-image: url("../images/fondo-carretera.jpg");
+  #game-screen{
+
+    background-image: url("../images/fondo-carretera.jpg");
     background-position: center;
     background-size: cover;
-    padding-bottom: 12%;
+    padding-bottom: 8%;
+    margin-top: 70px;
 
   }
 
@@ -49,7 +52,7 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 30px;
     text-align: right;
-    margin-top: 55px;
+    margin-top: 65px;
   }
 
   #instructions {
