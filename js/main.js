@@ -37,6 +37,7 @@ let gameIntervalId= null;
 let piedraIntervalId= null;
 let botellaIntervalId= null;
 let carreteraIntervalId= null;
+let donutIntervalId= null;
 
 
 //FUNCIONES GLOBALES DEL JUEGO
@@ -57,7 +58,7 @@ function startGame() {
     addPiedra();
   }, 1500)
 
-  setInterval(()=>{
+  donutIntervalId= setInterval(()=>{
     addDonut();
   }, 3075)
 
@@ -286,6 +287,7 @@ function gameOver(){
     clearInterval (botellaIntervalId);
     clearInterval (carreteraIntervalId);
     clearInterval (scoreIntervalId);
+    clearInterval(donutIntervalId);
 
     gameBoxNode.innerHTML= "";
 
