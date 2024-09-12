@@ -2,12 +2,12 @@ class Corredor{
     constructor(){
         this.x= 50,
         this.y= 200,
-        this.h= 80,
-        this.w= 70,
+        this.h= 110,
+        this.w= 90,
         this.speed= 25,
 
         this.node= document.createElement("img");  //añadimos el corredor al DOM
-        this.node.src= "./images/corredora.png";
+        this.node.src= "./images/gif-corredor.gif";
         gameBoxNode.append(this.node);  //añadimos la corredora a la pantalla del juego
 
 

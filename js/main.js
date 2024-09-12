@@ -15,11 +15,6 @@ const numberVidasNode= document.querySelector("#numberVidas");
 const pointScoreNode= document.querySelector("#pointScore");
 
 
-let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas vidas
-let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //audio para cuando pierdes vidas
-let soundMain= new Audio ("./audios/marathon-audio.wav")  //audio de fondo
-
-
 //VARIABLES GLOBALES DEL JUEGO
 let corredor = null;
 let piedraArray= [];
@@ -31,6 +26,11 @@ let score= 0;    //la puntuación empieza en 0
 let speedGlobal= 3;   //velocidad principal de todos los objetos
 let carreteraArray= [];
 let donutArray= [];
+
+let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas vidas
+let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //audio para cuando pierdes vidas
+let soundMain= new Audio ("./audios/marathon-audio.wav");  //audio de fondo
+let soundDonut= new Audio ("./audios/sonidoD.wav");    //audio ralentizar velocidad
 
 
 let gameIntervalId= null;
@@ -55,7 +55,7 @@ function startGame() {
   
    piedraIntervalId= setInterval(()=>{
     addPiedra();
-  }, 1500)
+  }, 1200)
 
   setInterval(()=>{
     addDonut();
@@ -130,7 +130,6 @@ function addPiedra(){
 
    let newPiedra= new Piedra(randomPositionY, "pequeña", 1);
   piedraArray.push(newPiedra);
-  console.log("piedra añadida")
   
   setTimeout(() => {   //piedraGrande saldrá un poco despues en la pantalla
     let piedraMasGrande= new Piedra(randomPositionY + 250, "grande", 1);
@@ -253,6 +252,7 @@ function colisionesDonut(){
       eachDonut.node.remove();
       donutArray.splice(index, 1); 
 
+      soundDonut.play();
       corredor.slowDown();
     }
   })  
@@ -280,11 +280,14 @@ function gameOver(){
 }
 
 function resetGame(){
-  numberVidas=1;
+  numberVidas=2;
   numberVidasNode.innerText= numberVidas;
+  speedGlobal=3;
   
   piedraArray=[]
   botellaArray=[]
+  carreteraArray= []
+  donutArray=[]
 
   gameBoxNode.innerHTML= ""
 
