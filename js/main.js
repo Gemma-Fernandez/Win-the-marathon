@@ -283,6 +283,7 @@ function resetGame(){
   numberVidas=2;
   numberVidasNode.innerText= numberVidas;
   speedGlobal=3;
+  score=0;
   
   piedraArray=[]
   botellaArray=[]
