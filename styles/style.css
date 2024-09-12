@@ -78,7 +78,7 @@ body {
 
   #game-box {
     background-color: rgb(121, 171, 142);
-    width:600px;
+    width:650px;
     height:450px;
 
     position: relative; /*posiciona los element de forma absoluta dentro de game-box */

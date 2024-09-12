@@ -15,7 +15,7 @@ const numberVidasNode= document.querySelector("#numberVidas");
 
 
 let winAudio= new Audio ("./audios/ganas-vida.wav");  //audio para cuando ganas vidas
-let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //para para cuando pierdes vidas
+let loseAudio= new Audio ("./audios/pierdes-vida.wav");  //audio para cuando pierdes vidas
 let soundMain= new Audio ("./audios/marathon-audio.wav")  //audio de fondo
 
 
@@ -40,7 +40,8 @@ function startGame() {
   initScreenNode.style.display = "none"; //cambiamos las pantallas
   gameScreenNode.style.display = "flex";
 
-  corredor = new Corredor(); //añadimos todos los elementos iniciales al juego
+  corredor = new Corredor(); //añado elementos iniciales al juego
+  addInitialCarretera();
   
      
   gameIntervalId= setInterval(() => {
@@ -92,7 +93,9 @@ function gameLoop() {
   colisionesBotellas(); 
   checkedElementExit(carreteraArray);
   colisionesDonut();
+  checkedElementExit(donutArray);
   }
+
 function corredorMovement(direction) {
   // console.log('Test Gemma2' +JSON.stringify(corredor));
   if (direction === "ArrowDown") {
@@ -148,8 +151,30 @@ function addBotella(){
 }
 
 function addCarretera(){
-  let newCarretera= new Carretera ();
+  let newCarretera= new Carretera (gameBoxNode.offsetWidth);
   carreteraArray.push(newCarretera);
+
+}
+function addInitialCarretera(){
+  let newCarretera1= new Carretera (-40);
+  carreteraArray.push(newCarretera1);
+
+  let carreteraDistanciaEntre= 45;
+  let newCarretera2= new Carretera (newCarretera1.x + newCarretera1.w + carreteraDistanciaEntre);
+  carreteraArray.push(newCarretera2);
+
+  let newCarretera3= new Carretera (newCarretera2.x + newCarretera2.w+ carreteraDistanciaEntre);
+  carreteraArray.push(newCarretera3);
+
+  let newCarretera4= new Carretera (newCarretera3.x + newCarretera3.w+ carreteraDistanciaEntre);
+  carreteraArray.push(newCarretera4);
+
+  let newCarretera5= new Carretera (newCarretera4.x + newCarretera4.w+ carreteraDistanciaEntre);
+  carreteraArray.push(newCarretera5);
+
+  let newCarretera6= new Carretera (newCarretera5.x + newCarretera5.w+ carreteraDistanciaEntre);
+  carreteraArray.push(newCarretera6);
+
 }
 
 function addDonut(){
@@ -185,7 +210,7 @@ function colisionesPiedras(){
       numberVidasNode.innerText=numberVidas;
       loseAudio.play();
 
-      if(numberVidas === 0){
+      if(numberVidas <= 0){
         gameOver();
       } 
     }
@@ -254,7 +279,7 @@ function resetGame(){
 
 
 //EVENT LISTENERS
-startButtonNode.addEventListener("click", startGame); //cuando hacemos click en el boton, inicia el juego
+startButtonNode.addEventListener("click", startGame); //cuando hago click en el boton, inicia el juego
 
 
 window.addEventListener("keydown", (event) => {
@@ -265,7 +290,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-endButtonNode.addEventListener("click", ()=>{
+endButtonNode.addEventListener("click", ()=>{     //boton para reiniciar el juego
   gameOverScreenNode.style.display= "none";
   initScreenNode.style.display= "flex";
 

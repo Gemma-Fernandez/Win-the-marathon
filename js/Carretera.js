@@ -1,6 +1,6 @@
 class Carretera{
-    constructor(){
-        this.x= gameBoxNode.offsetWidth;
+    constructor(positionX){
+        this.x= positionX;
         this.y= 217,
         this.h= 10,
         this.w= 95,
