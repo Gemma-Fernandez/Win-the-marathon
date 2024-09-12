@@ -265,6 +265,21 @@ function scoreCounter(){
   }, 2000)
 }
 
+function resetCarreras(){
+  piedraArray.forEach((eachPiedra) =>{
+    eachPiedra.x=gameBoxNode.offsetWidth;
+    eachPiedra.node.style.left = `${eachPiedra.x}px`;
+  })
+  donutArray.forEach((eachDonut)=> {
+    eachDonut.x=gameBoxNode.offsetWidth;
+    eachDonut.node.style.left = `${eachDonut.x}px`;
+  })
+  botellaArray.forEach((eachBotella) =>{
+    eachBotella.x=gameBoxNode.offsetWidth;
+    eachBotella.node.style.left = `${eachBotella.x}px`;
+  })
+
+}
 function gameOver(){
     clearInterval (gameIntervalId);
     clearInterval (piedraIntervalId);
@@ -289,6 +304,8 @@ function resetGame(){
   botellaArray=[]
   carreteraArray= []
   donutArray=[]
+
+  resetCarreras();
 
   gameBoxNode.innerHTML= ""
 
