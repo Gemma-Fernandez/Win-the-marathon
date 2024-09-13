@@ -38,6 +38,13 @@ let piedraIntervalId= null;
 let botellaIntervalId= null;
 let carreteraIntervalId= null;
 let donutIntervalId= null;
+let speedIntervalId = null
+let piedraGrandeIntervalId= null;
+let perroIntervalId= null;
+let platanoIntervalId=null;
+let piedraTimeoutId = null;
+let perroTimeoutId = null;
+let platanoTimeoutId = null;
 
 
 //FUNCIONES GLOBALES DEL JUEGO
@@ -66,7 +73,7 @@ function startGame() {
     addBotella();
   }, 9575)
 
-  setInterval(()=>{
+  speedIntervalId = setInterval(()=>{
     speedGlobal += 0.7;
   }, 6000);
 
@@ -74,6 +81,29 @@ function startGame() {
     addCarretera();
   }, 600)
 
+  perroTimeoutId = setTimeout(() => {
+    perroIntervalId = setInterval(() => {
+      let randomPositionY= Math.floor(Math.random()*190)
+      let perroEnojado= new Piedra (randomPositionY + 70, "perro", 2);
+      piedraArray.push(perroEnojado)
+    }, 8000)
+  }, 17000)
+
+  piedraTimeoutId = setTimeout(() => {
+    piedraGrandeIntervalId = setInterval(() => {
+      let randomPositionY= Math.floor(Math.random()*190)
+      let piedraMasGrande= new Piedra(randomPositionY + 250, "grande", 1);
+      piedraArray.push(piedraMasGrande);
+    }, 1500)
+  }, 3000)
+
+  platanoTimeoutId = setTimeout(() => {
+    platanoIntervalId = setInterval(() => {
+      let randomPositionBotella= Math.floor(Math.random()* 180)
+      let botellaMasVidas= new Botella (randomPositionBotella + 120, "dosVidas", 2);
+      botellaArray.push(botellaMasVidas);
+    }, 10200)
+  }, 12100)
   
 }
 
@@ -132,27 +162,12 @@ function addPiedra(){
    let newPiedra= new Piedra(randomPositionY, "pequeña", 1);
   piedraArray.push(newPiedra);
   
-  setTimeout(() => {   //piedraGrande saldrá un poco despues en la pantalla
-    let piedraMasGrande= new Piedra(randomPositionY + 250, "grande", 1);
-  piedraArray.push(piedraMasGrande);
-  }, 3000);
-
-  setTimeout(()=>{
-    let perroEnojado= new Piedra (randomPositionY + 70, "perro", 2);
-  piedraArray.push(perroEnojado)
-  }, 25000);
-}
+  }
 
 function addBotella(){
   let randomPositionBotella= Math.floor(Math.random()* 180)
   let newBotella= new Botella(randomPositionBotella, "unaVida", 1);
   botellaArray.push(newBotella);
-
-  setTimeout(() => {   //botella que te da 2 vidas saldrá un poco despues en la pantalla
-    let botellaMasVidas= new Botella (randomPositionBotella + 120, "dosVidas", 2);
-    botellaArray.push(botellaMasVidas);
-  }, 10100);
-  
 }
 
 function addCarretera(){
@@ -266,21 +281,6 @@ function scoreCounter(){
   }, 2000)
 }
 
-function resetCarreras(){
-  piedraArray.forEach((eachPiedra) =>{
-    eachPiedra.x=gameBoxNode.offsetWidth;
-    eachPiedra.node.style.left = `${eachPiedra.x}px`;
-  })
-  donutArray.forEach((eachDonut)=> {
-    eachDonut.x=gameBoxNode.offsetWidth;
-    eachDonut.node.style.left = `${eachDonut.x}px`;
-  })
-  botellaArray.forEach((eachBotella) =>{
-    eachBotella.x=gameBoxNode.offsetWidth;
-    eachBotella.node.style.left = `${eachBotella.x}px`;
-  })
-
-}
 function gameOver(){
     clearInterval (gameIntervalId);
     clearInterval (piedraIntervalId);
@@ -288,8 +288,15 @@ function gameOver(){
     clearInterval (carreteraIntervalId);
     clearInterval (scoreIntervalId);
     clearInterval(donutIntervalId);
+    clearInterval(speedIntervalId);
+    clearInterval(piedraGrandeIntervalId);
+    clearInterval(perroIntervalId);
+    clearInterval(platanoIntervalId);
+    clearInterval(perroTimeoutId);
+    clearInterval(platanoTimeoutId);
+    clearInterval(piedraTimeoutId);
 
-    gameBoxNode.innerHTML= "";
+    // gameBoxNode.innerHTML= "";
 
 
     gameScreenNode.style.display="none"
@@ -297,21 +304,18 @@ function gameOver(){
 }
 
 function resetGame(){
+  gameBoxNode.innerHTML= ""
+
   numberVidas=2;
   numberVidasNode.innerText= numberVidas;
   speedGlobal=3;
   score=0;
-  
+
+  corredor= null;
   piedraArray=[]
   botellaArray=[]
   carreteraArray= []
   donutArray=[]
-
-  resetCarreras();
-
-  gameBoxNode.innerHTML= ""
-
-  corredor= null;
 
 }
 

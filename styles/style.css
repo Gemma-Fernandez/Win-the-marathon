@@ -8,8 +8,8 @@ body {
     background-image: url("../images/fondo-carretera.jpg");
     background-position: center;
     background-size: cover;
-    padding-bottom: 8%;
-    margin-top: 70px;
+    padding-bottom: 2%;
+    margin-top: 20px;
 
   }
 
@@ -50,9 +50,9 @@ body {
   #textVidas {
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     text-align: right;
-    margin-top: 65px;
+    margin-top: 20px;
   }
 
   #instructions {
@@ -62,10 +62,10 @@ body {
   }
 
   #botonAudio{
-    padding: 5px;
+    padding: 2px;
     font-size: 15px;
     display: block;
-    width: 33%
+    width: 43%
   }
   
 
