@@ -8,7 +8,7 @@ Win the Marathon is a game where player is running a race and he has to try not 
 The game ends when the player has 0 lives. After the game ends, a score is calculated based on the time you have held out.
 
 # Main Funcionalities
-- Objects appear automatically and the player must move up an down.
+- Objects appear automatically and the player must move clicking `up` and `down`.
 - Some objects take lives from you and others will give them yo you.
 - The donut objects slows you down for a while.
 - The game ends when the player has 0 lives.
@@ -31,3 +31,9 @@ The game ends when the player has 0 lives. After the game ends, a score is calcu
 - Game Screen
 - Game Over Screen
 
+# Extra Links
+### Slides
+[Link](https://docs.google.com/presentation/d/1ajWPVFe6o_gvXwckZkjsYeXZ5A38quKXiY5lhhWFf_I/edit#slide=id.gc6f83aa91_0_79)
+
+### Deploy
+[Link](https://gemma-fernandez.github.io/Win-the-marathon/)
